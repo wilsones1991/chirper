@@ -1,0 +1,23 @@
+name: GitHub Actions Demo
+run-name: ${{ github.actor }} is running the tests 🐘
+on: [push]
+jobs:
+  PHP:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-versions: [ '8.0', '8.1', '8.2', '8.3' ]
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+
+      - name: Install dependencies
+        run: composer install --prefer-dist
+
+      - name: Run the test suite
+        run: vendor/bin/phpunit
