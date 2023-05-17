@@ -22,7 +22,6 @@ jobs:
           options: --exclude=*.log
 
       - name: Check for code style
-
         run: pint --test
 
 
