@@ -1,4 +1,4 @@
-name: Run Chirper Tests
+name: Github Actions Demo
 run-name: ${{ github.actor }} is checking for style 🐘
 on: [push]
 jobs:
