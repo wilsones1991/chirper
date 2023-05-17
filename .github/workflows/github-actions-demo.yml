@@ -7,6 +7,16 @@ jobs:
     strategy:
       matrix:
         php-versions: [ '8.0', '8.1', '8.2', '8.3' ]
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_DATABASE: phptek
+        ports:
+          - 3306/tcp
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
@@ -26,5 +36,13 @@ jobs:
 
       - name: Check for code style
         run: pint --test
+
+        env:
+          DB_CONNECTION: mysql
+          DB_HOST: 127.0.0.1
+          DB_PORT: ${{ job.services.mysql.ports['3306' }}
+          DB_USERNAME: root
+          DB_PASSWORD: null
+          DB_DATABASE: phptek
 
 
