@@ -40,7 +40,7 @@ jobs:
         env:
           DB_CONNECTION: mysql
           DB_HOST: 127.0.0.1
-          DB_PORT: ${{ job.services.mysql.ports['3306' }}
+          DB_PORT: ${{ job.services.mysql.ports['3306']}}
           DB_USERNAME: root
           DB_PASSWORD: null
           DB_DATABASE: phptek
