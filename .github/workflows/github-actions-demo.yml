@@ -1,5 +1,5 @@
 name: GitHub Actions Demo
-run-name: ${{ github.actor }} is setting up PHP 🐘
+run-name: ${{ github.actor }} is checking for lint 🐘
 on: [push]
 jobs:
   Explore-GitHub-Actions:
@@ -13,3 +13,11 @@ jobs:
           php-version: '8.2'
 
       - run: php -v
+
+      - name: Check for syntax errors
+        uses: overtrue/phplint@8.2
+        with:
+          path: .
+          options: --exclude=*.log
+
+
